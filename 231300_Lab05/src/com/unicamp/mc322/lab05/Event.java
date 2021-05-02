@@ -2,7 +2,7 @@ package com.unicamp.mc322.lab05;
 
 import java.time.LocalDateTime;
 
-public class Event extends Reminder {
+public class Event extends CommonReminder {
     protected LocalDateTime date;
 
     public Event(String description, LocalDateTime date) {

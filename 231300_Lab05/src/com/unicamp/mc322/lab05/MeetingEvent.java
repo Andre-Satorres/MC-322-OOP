@@ -3,6 +3,7 @@ package com.unicamp.mc322.lab05;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MeetingEvent extends Event {
     protected List<Participant> participants;
@@ -15,5 +16,12 @@ public class MeetingEvent extends Event {
         }
 
         this.participants = new ArrayList<>(participants);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\n   - Confirmed: " + participants.stream().filter(Participant::isConfirmed).collect(Collectors.toList()) +
+                "\n   - Not confirmed: " + participants.stream().filter(Participant::isNotConfirmed).collect(Collectors.toList());
     }
 }

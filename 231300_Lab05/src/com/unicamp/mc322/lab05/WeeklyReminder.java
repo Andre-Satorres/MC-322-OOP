@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeeklyReminder extends Reminder {
+public class WeeklyReminder extends CommonReminder {
     protected List<DayOfWeek> daysOfWeek;
 
     public WeeklyReminder(String description, List<DayOfWeek> daysOfWeek) {
@@ -27,27 +27,5 @@ public class WeeklyReminder extends Reminder {
     @Override
     protected boolean occursIn(LocalDateTime date) {
         return super.occursIn(date) && this.daysOfWeek.contains(date.getDayOfWeek());
-    }
-
-    public void addWeekDay(DayOfWeek dayOfWeek) {
-        if (dayOfWeek == null) {
-            throw new IllegalArgumentException("Day of Week must not be null!");
-        }
-
-        if (!this.daysOfWeek.contains(dayOfWeek)) {
-            this.daysOfWeek.add(dayOfWeek);
-        }
-    }
-
-    public void removeWeekDay(DayOfWeek dayOfWeek) {
-        if (dayOfWeek == null) {
-            throw new IllegalArgumentException("Day of Week must not be null!");
-        }
-
-        if (this.daysOfWeek.size() > 1) {
-            this.daysOfWeek.remove(dayOfWeek);
-        } else {
-            throw new IllegalArgumentException("Cannot remove the only day of week set!");
-        }
     }
 }

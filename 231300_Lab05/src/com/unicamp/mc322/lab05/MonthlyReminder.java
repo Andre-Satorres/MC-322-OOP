@@ -3,7 +3,7 @@ package com.unicamp.mc322.lab05;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-public class MonthlyReminder extends Reminder {
+public class MonthlyReminder extends CommonReminder {
     protected Month month;
 
     public MonthlyReminder(String description, Month month) {

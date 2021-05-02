@@ -5,16 +5,17 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Scheduler {
-    private final List<Reminder> reminders;
+    private final List<CommonReminder> reminders;
 
     public Scheduler() {
         this.reminders = new ArrayList<>();
     }
 
     public void addReminder(String description) {
-        this.reminders.add(new Reminder(description));
+        this.reminders.add(new CommonReminder(description));
     }
 
     public void addReminder(String description, Month month) {
@@ -33,22 +34,31 @@ public class Scheduler {
         this.reminders.add(new MeetingEvent(description, createLocalDateTime(day, month, year), participants));
     }
 
-    public void cancelReminder(Reminder reminder) {
+    public void confirmParticipation(Participant participant, MeetingEvent meetingEvent) {
+        if (this.reminders.contains(meetingEvent)) {
+            meetingEvent.participants.get(meetingEvent.participants.indexOf(participant)).confirmParticipation();
+        }
+    }
+
+    public void cancelReminder(CommonReminder reminder) {
         this.reminders.remove(reminder);
     }
 
     public SchedulerDate getAllFromToday() {
-        LocalDateTime now = LocalDateTime.now();
-        return getAllFromDate(now.getDayOfMonth(), now.getMonth(), now.getYear());
+        return getRemindersFromDate(LocalDateTime.now());
+    }
+
+    public SchedulerDate getAllFromDate(int day, Month month, int year) {
+        return getRemindersFromDate(createLocalDateTime(day, month, year));
     }
 
     public List<SchedulerDate> getAllBetweenDates(int startDay, Month startMonth, int startYear, int endDay, Month endMonth, int endYear) {
-        LocalDateTime startDate = createLocalDateTime(startYear, startMonth, startDay);
-        LocalDateTime endDate = createLocalDateTime(endYear, endMonth, endDay);
+        LocalDateTime startDate = createLocalDateTime(startDay, startMonth, startYear);
+        LocalDateTime endDate = createLocalDateTime(endDay, endMonth, endYear);
         List<SchedulerDate> allDays = new ArrayList<>();
 
         while (startDate.isBefore(endDate)) {
-            SchedulerDate schedulerDate = getAllFromDate(startDay, startMonth, startYear);
+            SchedulerDate schedulerDate = getRemindersFromDate(startDate);
 
             if (schedulerDate.reminderAmount() > 0) {
                 allDays.add(schedulerDate);
@@ -60,12 +70,9 @@ public class Scheduler {
         return allDays;
     }
 
-    public SchedulerDate getAllFromDate(int day, Month month, int year) {
-        LocalDateTime date = createLocalDateTime(day, month, year);
-        SchedulerDate schedulerDate = new SchedulerDate(date);
-
-        reminders.stream().filter(reminder -> reminder.occursIn(date)).forEach(schedulerDate::addReminder);
-        return schedulerDate;
+    private SchedulerDate getRemindersFromDate(LocalDateTime date) {
+        List<CommonReminder> dateReminders = reminders.stream().filter(reminder -> reminder.occursIn(date)).collect(Collectors.toList());
+        return new SchedulerDate(date, dateReminders);
     }
 
     private LocalDateTime createLocalDateTime(int day, Month month, int year) {
