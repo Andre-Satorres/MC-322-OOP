@@ -14,6 +14,7 @@ public class Main {
         scheduler.addReminder("Fazer a tarefa de POO");
         scheduler.addReminder("Fazer exames", Month.APRIL);
         scheduler.addReminder("Fazer exames", Month.JULY);
+        scheduler.addReminder("Fazer exames", Month.SEPTEMBER);
 
         scheduler.addReminder("Terapia", Arrays.asList(DayOfWeek.TUESDAY, DayOfWeek.THURSDAY));
         scheduler.addReminder("Aniversario", 1, Month.AUGUST, 2021);
