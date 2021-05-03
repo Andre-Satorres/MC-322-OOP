@@ -1,5 +1,10 @@
 package com.unicamp.mc322.lab05;
 
+import com.unicamp.mc322.lab05.scheduler.MeetingEvent;
+import com.unicamp.mc322.lab05.scheduler.Participant;
+import com.unicamp.mc322.lab05.scheduler.Scheduler;
+import com.unicamp.mc322.lab05.scheduler.SchedulerDate;
+
 import java.time.DayOfWeek;
 import java.time.Month;
 import java.util.Arrays;

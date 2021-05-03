@@ -1,4 +1,4 @@
-package com.unicamp.mc322.lab05;
+package com.unicamp.mc322.lab05.scheduler;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

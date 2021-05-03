@@ -1,4 +1,4 @@
-package com.unicamp.mc322.lab05;
+package com.unicamp.mc322.lab05.scheduler;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
