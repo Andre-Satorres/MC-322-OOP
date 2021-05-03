@@ -48,19 +48,19 @@ public class Playlist {
     }
 
     Item leastLastingItem() {
-        return items.stream().min(Comparator.comparingDouble(Item::getDuration)).orElse(null);
+        return items.stream().min(Comparator.comparingDouble(Item::getDurationSeconds)).orElse(null);
     }
 
     Item longerLastingItem() {
-        return items.stream().max(Comparator.comparingDouble(Item::getDuration)).orElse(null);
+        return items.stream().max(Comparator.comparingDouble(Item::getDurationSeconds)).orElse(null);
     }
 
     double avgItemDuration() {
-        return items.stream().mapToDouble(Item::getDuration).average().orElse(Double.NaN);
+        return items.stream().mapToDouble(Item::getDurationSeconds).average().orElse(Double.NaN);
     }
 
     double totalDuration() {
-        return items.stream().mapToDouble(Item::getDuration).sum();
+        return items.stream().mapToDouble(Item::getDurationSeconds).sum();
     }
 
     Item play() {
@@ -81,6 +81,6 @@ public class Playlist {
     }
 
     private boolean isMBLimitApplicable() {
-        return longerLastingItem().getDuration() < MAX_ALLOWED_DURATION_SECONDS;
+        return longerLastingItem().getDurationSeconds() < MAX_ALLOWED_DURATION_SECONDS;
     }
 }

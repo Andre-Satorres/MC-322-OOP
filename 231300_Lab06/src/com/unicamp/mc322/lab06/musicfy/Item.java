@@ -4,28 +4,20 @@ import java.time.LocalDateTime;
 
 public abstract class Item {
     protected String name;
-    protected final double duration;
     protected String artist;
-    protected final double totalStorageMB;
-    protected int episodesAmount;
+    protected double durationSeconds;
     protected LocalDateTime createdOn;
 
-    public Item(String name, double duration, String artist, int episodesAmount) {
+    public Item(String name, String artist, double durationSeconds) {
         this.name = name;
-        this.duration = duration;
         this.artist = artist;
-        this.totalStorageMB = calcTotalStorageMB();
-        this.episodesAmount = episodesAmount;
+        this.durationSeconds = durationSeconds;
         this.createdOn = LocalDateTime.now();
     }
 
-    protected abstract double calcTotalStorageMB();
+    protected abstract double getTotalStorageMB();
 
-    double getDuration() {
-        return duration;
-    }
-
-    double getTotalStorageMB() {
-        return totalStorageMB;
+    public double getDurationSeconds() {
+        return durationSeconds;
     }
 }

@@ -1,14 +1,14 @@
 package com.unicamp.mc322.lab06.musicfy;
 
-public class Song extends Item {
-    private final double SIZE_PER_MINUTES_MB = 5;
+public class Song extends MediaEntity {
+    private static final double SIZE_PER_MINUTES_MB = 5;
 
-    public Song(String name, double duration, String artist, int episodesAmount) {
-        super(name, duration, artist, episodesAmount);
+    public Song(String name, String artist, double durationSeconds) {
+        super(name, artist, durationSeconds, SIZE_PER_MINUTES_MB);
     }
 
     @Override
     protected double calcTotalStorageMB() {
-        return this.duration * SIZE_PER_MINUTES_MB;
+        return mbPerMinutes * getDurationMinutes();
     }
 }
