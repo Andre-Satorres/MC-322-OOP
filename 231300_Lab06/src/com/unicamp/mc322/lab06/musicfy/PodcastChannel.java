@@ -27,7 +27,7 @@ public class PodcastChannel extends Item {
 
 
     @Override
-    protected double calcTotalStorageMB() {
-        return podcasts.stream().mapToDouble(Item::calcTotalStorageMB).sum() * podcasts.size();
+    protected double getTotalStorageMB() {
+        return podcasts.stream().mapToDouble(Item::getTotalStorageMB).sum() * podcasts.size();
     }
 }

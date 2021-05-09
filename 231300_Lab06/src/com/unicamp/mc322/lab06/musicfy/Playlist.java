@@ -9,7 +9,6 @@ public class Playlist {
     private String name;
     private double totalStorageMB;
     private final List<Item> items;
-    private final double MAX_ALLOWED_DURATION_SECONDS = 60;
     private int current;
     private LocalDateTime createdOn;
 
@@ -19,6 +18,18 @@ public class Playlist {
         this.items = new ArrayList<>();
         this.current = 0;
         this.createdOn = LocalDateTime.now();
+    }
+
+    public Playlist(String name, Item ... items) {
+        this(name);
+
+        for (Item item: items) {
+            this.addItem(item);
+        }
+    }
+
+    boolean isEmpty() {
+        return this.items.isEmpty();
     }
 
     double getTotalStorageMB() {
@@ -64,6 +75,10 @@ public class Playlist {
     }
 
     Item play() {
+        if (current == this.items.size()) {
+            current = 0;
+        }
+
         return items.get(current++);
     }
 
@@ -77,10 +92,12 @@ public class Playlist {
             toGet = (int) (Math.random() * items.size());
         } while (toGet == current);
 
+        current = toGet;
         return items.get(toGet);
     }
 
-    private boolean isMBLimitApplicable() {
-        return longerLastingItem().getDurationSeconds() < MAX_ALLOWED_DURATION_SECONDS;
+    @Override
+    public String toString() {
+        return String.format("(%s - %.2fMB - Items:%s)", name, totalStorageMB, items);
     }
 }

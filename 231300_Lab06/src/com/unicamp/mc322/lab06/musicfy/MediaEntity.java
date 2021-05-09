@@ -2,7 +2,6 @@ package com.unicamp.mc322.lab06.musicfy;
 
 public abstract class MediaEntity extends Item {
     protected double mbPerMinutes;
-    protected double durationSeconds;
 
     public MediaEntity(String name, String artist, double durationSeconds, double mbPerMinutes) {
         super(name, artist, durationSeconds);
@@ -10,7 +9,7 @@ public abstract class MediaEntity extends Item {
     }
 
     @Override
-    protected abstract double calcTotalStorageMB();
+    protected abstract double getTotalStorageMB();
 
     protected double getDurationMinutes() {
         return durationSeconds / 60;

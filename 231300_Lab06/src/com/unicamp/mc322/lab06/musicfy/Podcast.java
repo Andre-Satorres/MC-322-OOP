@@ -8,7 +8,7 @@ public class Podcast extends MediaEntity {
     }
 
     @Override
-    protected double calcTotalStorageMB() {
+    protected double getTotalStorageMB() {
         return mbPerMinutes * getDurationMinutes();
     }
 }

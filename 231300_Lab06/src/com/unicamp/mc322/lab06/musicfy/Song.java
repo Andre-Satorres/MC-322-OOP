@@ -8,7 +8,12 @@ public class Song extends MediaEntity {
     }
 
     @Override
-    protected double calcTotalStorageMB() {
+    protected double getTotalStorageMB() {
         return mbPerMinutes * getDurationMinutes();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(Song - %s - %s - %ss)", name, artist, durationSeconds);
     }
 }
