@@ -1,23 +1,20 @@
-package com.unicamp.mc322.lab06.musicfy;
+package com.unicamp.mc322.lab06.musicfy.entity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class Playlist {
-    private String name;
+    private final String name;
     private double totalStorageMB;
     private final List<Item> items;
     private int current;
-    private LocalDateTime createdOn;
 
     public Playlist(String name) {
         this.name = name;
         this.totalStorageMB = 0;
         this.items = new ArrayList<>();
         this.current = 0;
-        this.createdOn = LocalDateTime.now();
     }
 
     public Playlist(String name, Item ... items) {
@@ -58,19 +55,19 @@ public class Playlist {
         }
     }
 
-    Item leastLastingItem() {
+    public Item leastLastingItem() {
         return items.stream().min(Comparator.comparingDouble(Item::getDurationSeconds)).orElse(null);
     }
 
-    Item longerLastingItem() {
+    public Item longerLastingItem() {
         return items.stream().max(Comparator.comparingDouble(Item::getDurationSeconds)).orElse(null);
     }
 
-    double avgItemDuration() {
+    public double avgItemDuration() {
         return items.stream().mapToDouble(Item::getDurationSeconds).average().orElse(Double.NaN);
     }
 
-    double totalDuration() {
+    public double totalDuration() {
         return items.stream().mapToDouble(Item::getDurationSeconds).sum();
     }
 

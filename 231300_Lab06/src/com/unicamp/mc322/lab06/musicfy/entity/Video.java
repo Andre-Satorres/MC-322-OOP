@@ -1,4 +1,4 @@
-package com.unicamp.mc322.lab06.musicfy;
+package com.unicamp.mc322.lab06.musicfy.entity;
 
 public class Video extends MediaEntity {
     private final int pixelAmount;
@@ -13,7 +13,7 @@ public class Video extends MediaEntity {
 
     @Override
     protected double getTotalStorageMB() {
-        return (fps * pixelAmount + mbPerMinutes) * getDurationMinutes();
+        return (fps * (double)pixelAmount/1000 + mbPerMinutes) * getDurationMinutes();
     }
 
     @Override

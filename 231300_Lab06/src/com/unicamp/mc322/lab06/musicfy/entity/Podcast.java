@@ -1,4 +1,4 @@
-package com.unicamp.mc322.lab06.musicfy;
+package com.unicamp.mc322.lab06.musicfy.entity;
 
 public class Podcast extends MediaEntity {
     private static final double SIZE_PER_MINUTES_MB = 1;

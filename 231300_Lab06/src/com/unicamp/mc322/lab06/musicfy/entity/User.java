@@ -1,10 +1,9 @@
-package com.unicamp.mc322.lab06.musicfy;
+package com.unicamp.mc322.lab06.musicfy.entity;
 
 import com.unicamp.mc322.lab06.musicfy.exception.UserException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class User {

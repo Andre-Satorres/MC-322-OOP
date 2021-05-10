@@ -1,4 +1,4 @@
-package com.unicamp.mc322.lab06.musicfy;
+package com.unicamp.mc322.lab06.musicfy.entity;
 
 public abstract class MediaEntity extends Item {
     protected double mbPerMinutes;

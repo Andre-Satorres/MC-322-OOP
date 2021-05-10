@@ -1,4 +1,4 @@
-package com.unicamp.mc322.lab06.musicfy;
+package com.unicamp.mc322.lab06.musicfy.entity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
