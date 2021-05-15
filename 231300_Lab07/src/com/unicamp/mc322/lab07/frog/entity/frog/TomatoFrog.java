@@ -1,12 +1,13 @@
 package com.unicamp.mc322.lab07.frog.entity.frog;
 
 import com.unicamp.mc322.lab07.frog.direction.Direction;
+import com.unicamp.mc322.lab07.frog.entity.icon.Icon;
 import com.unicamp.mc322.lab07.frog.position.Position;
 
 public class TomatoFrog extends Frog {
 
-    public TomatoFrog(Position initialPosition) {
-        super(FrogType.TOMATO, initialPosition);
+    public TomatoFrog(Icon icon, Position initialPosition) {
+        super(FrogType.TOMATO, icon, initialPosition);
     }
 
     @Override

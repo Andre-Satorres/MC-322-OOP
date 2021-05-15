@@ -1,11 +1,12 @@
 package com.unicamp.mc322.lab07.frog.entity.frog;
 
 import com.unicamp.mc322.lab07.frog.direction.Direction;
+import com.unicamp.mc322.lab07.frog.entity.icon.Icon;
 import com.unicamp.mc322.lab07.frog.position.Position;
 
 public class PoisonousFrog extends Frog {
-    public PoisonousFrog(Position initialPosition) {
-        super(FrogType.POISONOUS, initialPosition);
+    public PoisonousFrog(Icon icon, Position initialPosition) {
+        super(FrogType.POISONOUS, icon, initialPosition);
     }
 
     @Override

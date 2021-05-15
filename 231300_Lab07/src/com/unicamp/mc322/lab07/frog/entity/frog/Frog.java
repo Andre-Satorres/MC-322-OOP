@@ -12,8 +12,9 @@ public abstract class Frog {
     protected Position currentPosition;
     protected Position lastPosition;
 
-    public Frog(FrogType type, Position initialPosition) {
+    public Frog(FrogType type, Icon icon, Position initialPosition) {
         this.type = type;
+        this.icon = icon;
         this.currentPosition = this.lastPosition = initialPosition;
     }
 
