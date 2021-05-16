@@ -11,4 +11,8 @@ public abstract class MapItem {
     }
 
     public abstract void interactWith(Frog frog);
+
+    public Object getMapItemRepresentation() {
+        return icon.getRepresentation();
+    }
 }

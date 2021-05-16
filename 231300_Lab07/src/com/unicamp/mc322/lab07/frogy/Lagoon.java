@@ -13,17 +13,22 @@ import com.unicamp.mc322.lab07.frogy.entity.map.item.obstacle.*;
 import com.unicamp.mc322.lab07.frogy.exception.InvalidObstacleException;
 import com.unicamp.mc322.lab07.frogy.position.Position;
 
+import java.util.StringJoiner;
+
 public class Lagoon {
     private Frog frog;
     private final Map map;
+    private final Icon emptyItemIcon;
 
     public Lagoon(int mapWidth, int mapHeight, Icon emptyItemIcon) {
         this.map = new Map(mapWidth, mapHeight, emptyItemIcon);
         this.frog = null;
+        this.emptyItemIcon = emptyItemIcon;
     }
 
     public void generateFrog(Icon frogIcon, FrogType frogType, Position frogInitialPosition) {
         this.frog = frogFactory(frogIcon, frogType, frogInitialPosition);
+        this.map.setItem(frogInitialPosition, frog);
     }
 
     private static Frog frogFactory(Icon icon, FrogType frogType, Position initialPosition) {
@@ -54,9 +59,9 @@ public class Lagoon {
             case PREDATOR: {
                 switch (positions.length) {
                     case 1:
-                        new Predator(icon, positions[0]);
+                        return new Predator(icon, positions[0]);
                     case 2:
-                        new Predator(icon, positions[0], positions[1]);
+                        return new Predator(icon, positions[0], positions[1]);
                     default:
                         throw new InvalidObstacleException("Predator must be in one or two Positions!");
                 }
@@ -64,11 +69,11 @@ public class Lagoon {
             case TRAP: {
                 switch (positions.length) {
                     case 1:
-                        new Trap(icon, positions[0]);
+                        return new Trap(icon, positions[0]);
                     case 2:
-                        new Trap(icon, positions[0], positions[1]);
+                        return new Trap(icon, positions[0], positions[1]);
                     case 3:
-                        new Trap(icon, positions[0], positions[1], positions[2]);
+                        return new Trap(icon, positions[0], positions[1], positions[2]);
                     default:
                         throw new InvalidObstacleException("Trap must be in one or two or three Positions!");
                 }
@@ -86,6 +91,9 @@ public class Lagoon {
         }
 
         map.getItem(currentFrogPosition).interactWith(frog);
+        map.removeItem(currentFrogPosition, emptyItemIcon);
+        map.removeItem(frog.getLastPosition(), emptyItemIcon);
+        map.setItem(currentFrogPosition, frog);
     }
 
     public void addFood(Icon icon, FoodType foodType, Position position) {
@@ -122,5 +130,20 @@ public class Lagoon {
 
     private Position randomMapPosition() {
         return Position.random(map.getWidth(), map.getHeight());
+    }
+
+    public
+
+    @Override
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner(" ");
+        Position frogPosition = frog.getCurrentPosition();
+        for (int i=0; i<map.getWidth(); i++) {
+            for (int j=0; j<map.getHeight(); i++) {
+                if (frogPosition.equals(new Position(i, j))) {
+                    stringJoiner.add(frog.getMapItemRepresentation());
+                }
+            }
+        }
     }
 }

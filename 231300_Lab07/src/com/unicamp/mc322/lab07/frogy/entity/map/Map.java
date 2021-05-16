@@ -67,4 +67,9 @@ public class Map {
         this.checkBounds(position);
         this.map[position.getX()][position.getY()] = item;
     }
+
+    public void removeItem(Position position, Icon emptyIcon) {
+        this.checkBounds(position);
+        this.map[position.getX()][position.getY()] = new EmptyItem(emptyIcon);
+    }
 }

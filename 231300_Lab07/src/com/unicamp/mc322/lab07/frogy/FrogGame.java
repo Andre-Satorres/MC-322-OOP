@@ -68,6 +68,10 @@ public class FrogGame {
         createPlayer();
     }
 
+    private void showLagoon() {
+        frogIO.showMessage(lagoon.toString());
+    }
+
     private void insertObstacles() {
         frogIO.showMessage("Now, let's insert the obstacles!");
         insertStones();

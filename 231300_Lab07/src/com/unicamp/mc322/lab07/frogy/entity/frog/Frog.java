@@ -18,6 +18,10 @@ public abstract class Frog extends MapItem {
         this.lifeState = LifeState.ALIVE;
     }
 
+    public Position getLastPosition() {
+        return lastPosition;
+    }
+
     public abstract void eat(Food food);
 
     public void move(Direction direction) {
