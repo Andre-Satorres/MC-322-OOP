@@ -1,7 +1,5 @@
 package com.unicamp.mc322.lab07.frogy.position;
 
-import java.util.Objects;
-
 public class Position {
     private final int x;
     private final int y;
@@ -51,16 +49,20 @@ public class Position {
         return new Position(x + amount, y + amount);
     }
 
-    public boolean areNeighbours(Position p1, Position p2) {
-        return p1.equals(p2) ||
-                p1.left(1).equals(p2) ||
-                p1.right(1).equals(p2) ||
-                p1.down(1).equals(p2) ||
-                p1.up(1).equals(p2) ||
-                p1.diagonalLeftUp(1).equals(p2) ||
-                p1.diagonalLeftDown(1).equals(p2) ||
-                p1.diagonalRightUp(1).equals(p2) ||
-                p1.diagonalRightDown(1).equals(p2);
+    public boolean isNeighbourOf(Position other) {
+        return equals(other) ||
+                left(1).equals(other) ||
+                right(1).equals(other) ||
+                down(1).equals(other) ||
+                up(1).equals(other) ||
+                diagonalLeftUp(1).equals(other) ||
+                diagonalLeftDown(1).equals(other) ||
+                diagonalRightUp(1).equals(other) ||
+                diagonalRightDown(1).equals(other);
+    }
+
+    public double manhattanDistanceTo(Position destination) {
+        return Math.abs(this.x - destination.x) + Math.abs(this.y + destination.y); // |x1 - x2| + |y1 - y2|.
     }
 
     @Override
@@ -69,5 +71,9 @@ public class Position {
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return x == position.x && y == position.y;
+    }
+
+    public static Position random(int maxX, int maxY) {
+        return new Position((int) (Math.random() * maxX), (int) (Math.random() * maxY));
     }
 }

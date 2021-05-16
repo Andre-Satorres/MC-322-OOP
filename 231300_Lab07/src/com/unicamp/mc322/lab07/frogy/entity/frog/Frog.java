@@ -1,20 +1,19 @@
 package com.unicamp.mc322.lab07.frogy.entity.frog;
 
 import com.unicamp.mc322.lab07.frogy.direction.Direction;
+import com.unicamp.mc322.lab07.frogy.entity.map.item.MapItem;
 import com.unicamp.mc322.lab07.frogy.entity.map.item.food.Food;
 import com.unicamp.mc322.lab07.frogy.entity.map.item.icon.Icon;
 import com.unicamp.mc322.lab07.frogy.position.Position;
 
-public abstract class Frog {
-    private String name;
-    private Icon icon;
+public abstract class Frog extends MapItem {
     protected int satisfactionPoints;
     protected Position currentPosition;
     protected Position lastPosition;
     private LifeState lifeState;
 
     public Frog(Icon icon, Position initialPosition) {
-        this.icon = icon;
+        super(icon);
         this.currentPosition = this.lastPosition = initialPosition;
         this.lifeState = LifeState.ALIVE;
     }

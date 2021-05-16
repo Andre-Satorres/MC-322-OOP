@@ -32,4 +32,9 @@ public class PoisonousFrog extends Frog {
     protected int moveAmount(Direction direction) {
         return 1 + (int) (Math.random() * 4); // 1, 2, 3 or 4
     }
+
+    @Override
+    public void interactWith(Frog frog) {
+        frog.die();
+    }
 }

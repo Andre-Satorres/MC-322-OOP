@@ -1,6 +1,10 @@
 package com.unicamp.mc322.lab07.frogy.io;
 
 import com.unicamp.mc322.lab07.frogy.command.Command;
+import com.unicamp.mc322.lab07.frogy.entity.map.item.icon.Icon;
+import com.unicamp.mc322.lab07.frogy.entity.map.item.icon.TextIcon;
+import com.unicamp.mc322.lab07.frogy.position.Position;
+
 import java.util.Scanner;
 
 public class FrogKeyboardIO extends FrogIO {
@@ -50,12 +54,13 @@ public class FrogKeyboardIO extends FrogIO {
     @Override
     public void banner() {
         showMessage(
-                "    ______                          ______                   \n" +
-                "   / ____/________  ____ ___  __   / ____/___ _____ ___  ___ \n" +
-                "  / /_  / ___/ __ \\/ __ `/ / / /  / / __/ __ `/ __ `__ \\/ _ \\\n" +
-                " / __/ / /  / /_/ / /_/ / /_/ /  / /_/ / /_/ / / / / / /  __/\n" +
-                "/_/   /_/   \\____/\\__, /\\__, /   \\____/\\__,_/_/ /_/ /_/\\___/ \n" +
-                "                 /____//____/                                ");
+                "        //     ______                          ______\n" +
+                "        //   / ____/________  ____ ___  __   / ____/___ _____ ___  ___\n" +
+                "        //  / /_  / ___/ __ \\/ __ `/ / / /  / / __/ __ `/ __ `__ \\/ _ \\\n" +
+                "        // / __/ / /  / /_/ / /_/ / /_/ /  / /_/ / /_/ / / / / / /  __/\n" +
+                "        ///_/   /_/   \\____/\\__, /\\__, /   \\____/\\__,_/_/ /_/ /_/\\___/\n" +
+                "        //                 /____//____/"
+        );
 
         //     ______                          ______
         //   / ____/________  ____ ___  __   / ____/___ _____ ___  ___
@@ -79,5 +84,40 @@ public class FrogKeyboardIO extends FrogIO {
         } while (playerName.isBlank());
 
         return playerName;
+    }
+
+    @Override
+    public int getInt(String message) {
+        int x;
+        for(;;) {
+            showMessage(message, false);
+            try {
+                x = Integer.parseInt(getInfo());
+                break;
+            } catch (Exception e) {
+                showMessage("Invalid input! Please retype a valid integer value...");
+            }
+        }
+
+        return x;
+    }
+
+    @Override
+    public Icon getIcon() {
+        showMessage("Please insert the icon (max 2 chars): ", false);
+        String input = getInfo();
+        String textIcon = input.length() > 2 ? input.substring(0, 2) : input;
+        return new TextIcon(textIcon);
+    }
+
+    @Override
+    public int getFrogType() {
+        int x = 0;
+
+        do {
+            x = getInt("With which frog type would you like to play? (1- Green, 2-Tomato, 3-Poisonous): ");
+        } while (x < 1 || x > 3);
+
+        return x;
     }
 }

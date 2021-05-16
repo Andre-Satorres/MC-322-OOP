@@ -31,4 +31,10 @@ public class TomatoFrog extends Frog {
                 return 1; // never should get here
         }
     }
+
+    @Override
+    public void interactWith(Frog frog) {
+        this.die();
+        frog.die();
+    }
 }

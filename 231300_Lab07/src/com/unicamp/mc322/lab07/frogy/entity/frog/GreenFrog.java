@@ -19,4 +19,9 @@ public class GreenFrog extends Frog {
     protected int moveAmount(Direction direction) {
         return 1;
     }
+
+    @Override
+    public void interactWith(Frog frog) {
+        this.die();
+    }
 }

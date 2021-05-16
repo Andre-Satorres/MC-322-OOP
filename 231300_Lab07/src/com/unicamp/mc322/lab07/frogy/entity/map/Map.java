@@ -2,6 +2,7 @@ package com.unicamp.mc322.lab07.frogy.entity.map;
 
 import com.unicamp.mc322.lab07.frogy.entity.map.item.EmptyItem;
 import com.unicamp.mc322.lab07.frogy.entity.map.item.MapItem;
+import com.unicamp.mc322.lab07.frogy.entity.map.item.icon.Icon;
 import com.unicamp.mc322.lab07.frogy.exception.InvalidPositionException;
 import com.unicamp.mc322.lab07.frogy.exception.MapCreationException;
 import com.unicamp.mc322.lab07.frogy.position.Position;
@@ -11,15 +12,15 @@ public class Map {
     private final int height;
     private final MapItem[][] map;
 
-    private void initializeMap() {
+    private void initializeMap(Icon icon) {
         for (int i=0; i<width; i++) {
             for (int j=0; j<height; j++) {
-                map[i][j] = new EmptyItem();
+                map[i][j] = new EmptyItem(icon);
             }
         }
     }
 
-    public Map(int width, int height) {
+    public Map(int width, int height, Icon emptyItemIcon) {
         if (width <= 0) {
             throw new MapCreationException("Invalid width. It must be greater than 0!");
         }
@@ -31,7 +32,7 @@ public class Map {
         this.width = width;
         this.height = height;
         this.map = new MapItem[width][height];
-        initializeMap();
+        initializeMap(emptyItemIcon);
     }
 
     public int getWidth() {
