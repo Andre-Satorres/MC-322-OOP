@@ -25,8 +25,10 @@ public class FrogGame {
     public void start() {
         initialize();
         createLagoon();
+        showLagoon();
 
-        frogIO.showMessage("Your all set " + playerName + "! game starting! Have fun :)");
+        frogIO.showMessage("Your all set " + playerName + "! Game starting ...! Have fun :)");
+        frogIO.showMessage("Please, insert the direction you want your frog to move: ");
         Command command = frogIO.getCommand();
 
         while(command != Command.QUIT) {
@@ -39,7 +41,21 @@ public class FrogGame {
             }
 
             lagoon.moveFrog(toDirection(command));
+
+            if (lagoon.isFrogDead()) {
+                break;
+            }
+
+            showLagoon();
+            frogIO.showMessage("Please, insert the direction you want your frog to move: ");
+            command = frogIO.getCommand();
         }
+
+        endGame();
+    }
+
+    private void endGame() {
+        // show satisfaction Points
     }
 
     private static Direction toDirection(Command command) {
@@ -69,7 +85,7 @@ public class FrogGame {
     }
 
     private void showLagoon() {
-        frogIO.showMessage(lagoon.toString());
+        frogIO.showLagoon(lagoon.getLagoon());
     }
 
     private void insertObstacles() {

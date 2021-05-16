@@ -82,12 +82,17 @@ public class Lagoon {
         }
     }
 
+    public boolean isFrogDead() {
+        return !frog.isAlive();
+    }
+
     public void moveFrog(Direction direction) {
         frog.move(direction);
         Position currentFrogPosition = frog.getCurrentPosition();
 
         if (map.isInvalid(currentFrogPosition)) {
             frog.die();
+            return;
         }
 
         map.getItem(currentFrogPosition).interactWith(frog);
@@ -132,18 +137,7 @@ public class Lagoon {
         return Position.random(map.getWidth(), map.getHeight());
     }
 
-    public
-
-    @Override
-    public String toString() {
-        StringJoiner stringJoiner = new StringJoiner(" ");
-        Position frogPosition = frog.getCurrentPosition();
-        for (int i=0; i<map.getWidth(); i++) {
-            for (int j=0; j<map.getHeight(); i++) {
-                if (frogPosition.equals(new Position(i, j))) {
-                    stringJoiner.add(frog.getMapItemRepresentation());
-                }
-            }
-        }
+    public Map getLagoon() {
+        return map;
     }
 }

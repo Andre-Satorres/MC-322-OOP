@@ -16,10 +16,10 @@ public class PoisonousFrog extends Frog {
         Direction randomDirection = Direction.values()[randomDirIndex];
 
         switch (randomDirection) {
-            case LEFT: move(currentPosition.left(moveAmount(randomDirection)));
-            case RIGHT: move(currentPosition.right(moveAmount(randomDirection)));
-            case DOWN: move(currentPosition.down(moveAmount(randomDirection)));
-            case UP: move(currentPosition.up(moveAmount(randomDirection)));
+            case LEFT: move(currentPosition.left(moveAmount(randomDirection))); break;
+            case RIGHT: move(currentPosition.right(moveAmount(randomDirection))); break;
+            case DOWN: move(currentPosition.down(moveAmount(randomDirection))); break;
+            case UP: move(currentPosition.up(moveAmount(randomDirection))); break;
         }
     }
 

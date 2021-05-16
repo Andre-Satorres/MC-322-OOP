@@ -9,6 +9,10 @@ public class Position {
         this.y = y;
     }
 
+    public static Position of(int x, int y) {
+        return new Position(x, y);
+    }
+
     public int getX() {
         return x;
     }
@@ -26,27 +30,27 @@ public class Position {
     }
 
     public Position down(int amount) {
+        return new Position(x, y + amount);
+    } // supposing begin in (0,0)
+
+    public Position up(int amount) {
         return new Position(x, y - amount);
     }
 
-    public Position up(int amount) {
-        return new Position(x, y + amount);
-    }
-
     public Position diagonalLeftUp(int amount) {
-        return new Position(x - amount, y - amount);
+        return this.left(amount).up(amount);
     }
 
     public Position diagonalLeftDown(int amount) {
-        return new Position(x - amount, y + amount);
+        return this.left(amount).down(amount);
     }
 
     public Position diagonalRightUp(int amount) {
-        return new Position(x + amount, y - amount);
+        return this.right(amount).up(amount);
     }
 
     public Position diagonalRightDown(int amount) {
-        return new Position(x + amount, y + amount);
+        return this.right(amount).down(amount);
     }
 
     public boolean isNeighbourOf(Position other) {

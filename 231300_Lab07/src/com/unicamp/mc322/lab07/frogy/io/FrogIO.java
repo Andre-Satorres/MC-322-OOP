@@ -1,6 +1,7 @@
 package com.unicamp.mc322.lab07.frogy.io;
 
 import com.unicamp.mc322.lab07.frogy.command.Command;
+import com.unicamp.mc322.lab07.frogy.entity.map.Map;
 import com.unicamp.mc322.lab07.frogy.entity.map.item.icon.Icon;
 import com.unicamp.mc322.lab07.frogy.position.Position;
 
@@ -25,4 +26,6 @@ public abstract class FrogIO {
     public abstract Icon getIcon();
 
     public abstract int getFrogType();
+
+    public abstract void showLagoon(Map lagoon);
 }

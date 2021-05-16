@@ -1,6 +1,8 @@
 package com.unicamp.mc322.lab07.frogy.io;
 
 import com.unicamp.mc322.lab07.frogy.command.Command;
+import com.unicamp.mc322.lab07.frogy.entity.map.Map;
+import com.unicamp.mc322.lab07.frogy.entity.map.item.MapItem;
 import com.unicamp.mc322.lab07.frogy.entity.map.item.icon.Icon;
 import com.unicamp.mc322.lab07.frogy.entity.map.item.icon.TextIcon;
 import com.unicamp.mc322.lab07.frogy.position.Position;
@@ -44,8 +46,8 @@ public class FrogKeyboardIO extends FrogIO {
         switch (command.toUpperCase()) {
             case "W": return Command.UP;
             case "A": return Command.LEFT;
-            case "S": return Command.RIGHT;
-            case "D": return Command.DOWN;
+            case "S": return Command.DOWN;
+            case "D": return Command.RIGHT;
             case "Q": return Command.QUIT;
             default: return Command.UNKNOWN;
         }
@@ -54,12 +56,12 @@ public class FrogKeyboardIO extends FrogIO {
     @Override
     public void banner() {
         showMessage(
-                "        //     ______                          ______\n" +
-                "        //   / ____/________  ____ ___  __   / ____/___ _____ ___  ___\n" +
-                "        //  / /_  / ___/ __ \\/ __ `/ / / /  / / __/ __ `/ __ `__ \\/ _ \\\n" +
-                "        // / __/ / /  / /_/ / /_/ / /_/ /  / /_/ / /_/ / / / / / /  __/\n" +
-                "        ///_/   /_/   \\____/\\__, /\\__, /   \\____/\\__,_/_/ /_/ /_/\\___/\n" +
-                "        //                 /____//____/"
+                "    ______                          ______\n" +
+                "   / ____/________  ____ ___  __   / ____/___ _____ ___  ___\n" +
+                "  / /_  / ___/ __ \\/ __ `/ / / /  / / __/ __ `/ __ `__ \\/ _ \\\n" +
+                " / __/ / /  / /_/ / /_/ / /_/ /  / /_/ / /_/ / / / / / /  __/\n" +
+                "/_/   /_/   \\____/\\__, /\\__, /   \\____/\\__,_/_/ /_/ /_/\\___/\n" +
+                "                 /____//____/"
         );
 
         //     ______                          ______
@@ -119,5 +121,21 @@ public class FrogKeyboardIO extends FrogIO {
         } while (x < 1 || x > 3);
 
         return x;
+    }
+
+    @Override
+    public void showLagoon(Map lagoon) {
+        for (int y=0; y<lagoon.getHeight(); y++) { // following the Cartesian Orientation [(0,0), (1,0), (2,0), ...]
+            for (int x=0; x<lagoon.getWidth(); x++) {
+                String textIcon = lagoon.getItem(Position.of(x, y)).getMapItemRepresentation().toString();
+                showMessage(textIcon, false);
+
+                if (x != lagoon.getWidth() - 1) {
+                    showMessage(" ", false);
+                }
+            }
+
+            showMessage("");
+        }
     }
 }

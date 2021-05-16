@@ -26,10 +26,10 @@ public abstract class Frog extends MapItem {
 
     public void move(Direction direction) {
         switch (direction) {
-            case LEFT: move(this.currentPosition.left(moveAmount(Direction.LEFT)));
-            case RIGHT: move(this.currentPosition.right(moveAmount(Direction.RIGHT)));
-            case DOWN: move(this.currentPosition.down(moveAmount(Direction.DOWN)));
-            case UP: move(this.currentPosition.up(moveAmount(Direction.UP)));
+            case LEFT: move(this.currentPosition.left(moveAmount(Direction.LEFT))); break;
+            case RIGHT: move(this.currentPosition.right(moveAmount(Direction.RIGHT))); break;
+            case DOWN: move(this.currentPosition.down(moveAmount(Direction.DOWN))); break;
+            case UP: move(this.currentPosition.up(moveAmount(Direction.UP))); break;
         }
     }
 
