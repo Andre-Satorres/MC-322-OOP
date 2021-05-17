@@ -13,8 +13,6 @@ import com.unicamp.mc322.lab07.frogy.entity.map.item.obstacle.*;
 import com.unicamp.mc322.lab07.frogy.exception.InvalidObstacleException;
 import com.unicamp.mc322.lab07.frogy.position.Position;
 
-import java.util.StringJoiner;
-
 public class Lagoon {
     private Frog frog;
     private final Map map;
@@ -29,6 +27,12 @@ public class Lagoon {
     public void generateFrog(Icon frogIcon, FrogType frogType, Position frogInitialPosition) {
         this.frog = frogFactory(frogIcon, frogType, frogInitialPosition);
         this.map.setItem(frogInitialPosition, frog);
+    }
+
+    public void generateFrog(Icon frogIcon, FrogType frogType) {
+        Position p = randomFreeMapPosition();
+        this.frog = frogFactory(frogIcon, frogType, p);
+        this.map.setItem(p, frog);
     }
 
     private static Frog frogFactory(Icon icon, FrogType frogType, Position initialPosition) {
@@ -86,6 +90,10 @@ public class Lagoon {
         return !frog.isAlive();
     }
 
+    public int frogSatisfactionPoints() {
+        return frog.getSatisfactionPoints();
+    }
+
     public void moveFrog(Direction direction) {
         frog.move(direction);
         Position currentFrogPosition = frog.getCurrentPosition();
@@ -99,6 +107,10 @@ public class Lagoon {
         map.removeItem(currentFrogPosition, emptyItemIcon);
         map.removeItem(frog.getLastPosition(), emptyItemIcon);
         map.setItem(currentFrogPosition, frog);
+    }
+
+    public boolean isPositionFree(Position position) {
+        return map.isFree(position);
     }
 
     public void addFood(Icon icon, FoodType foodType, Position position) {
@@ -120,13 +132,13 @@ public class Lagoon {
     }
 
     public void addObstacle(Icon icon, ObstacleType obstacleType) {
-        Position position = randomMapPosition();
+        Position position = randomFreeMapPosition();
         Obstacle obstacle = obstacleFactory(icon, obstacleType, position);
         createItem(obstacle);
     }
 
     private void createItem(MapItem item) {
-        this.map.setItem(randomMapPosition(), item);
+        this.map.setItem(randomFreeMapPosition(), item);
     }
 
     private void createItem(MapItem item, Position position) {
@@ -135,6 +147,15 @@ public class Lagoon {
 
     private Position randomMapPosition() {
         return Position.random(map.getWidth(), map.getHeight());
+    }
+
+    private Position randomFreeMapPosition() {
+        Position p;
+        do {
+            p = randomMapPosition();
+        } while (!map.isFree(p));
+
+        return p;
     }
 
     public Map getLagoon() {

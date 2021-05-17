@@ -72,4 +72,8 @@ public class Map {
         this.checkBounds(position);
         this.map[position.getX()][position.getY()] = new EmptyItem(emptyIcon);
     }
+
+    public boolean isFree(Position position) {
+        return getItem(position) instanceof EmptyItem;
+    }
 }

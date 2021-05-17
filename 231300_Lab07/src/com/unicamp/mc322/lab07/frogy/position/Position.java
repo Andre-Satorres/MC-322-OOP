@@ -66,7 +66,7 @@ public class Position {
     }
 
     public double manhattanDistanceTo(Position destination) {
-        return Math.abs(this.x - destination.x) + Math.abs(this.y + destination.y); // |x1 - x2| + |y1 - y2|.
+        return Math.abs(this.x - destination.x) + Math.abs(this.y - destination.y); // |x1 - x2| + |y1 - y2|.
     }
 
     @Override

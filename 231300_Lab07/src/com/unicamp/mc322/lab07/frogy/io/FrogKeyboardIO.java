@@ -40,6 +40,12 @@ public class FrogKeyboardIO extends FrogIO {
     }
 
     @Override
+    public boolean getYes(String message) {
+        showMessage(message + " (Y/N): ", false);
+        return getInfo().trim().equalsIgnoreCase("Y");
+    }
+
+    @Override
     public Command getCommand() {
         String command = getInfo();
 
@@ -64,12 +70,8 @@ public class FrogKeyboardIO extends FrogIO {
                 "                 /____//____/"
         );
 
-        //     ______                          ______
-        //   / ____/________  ____ ___  __   / ____/___ _____ ___  ___
-        //  / /_  / ___/ __ \/ __ `/ / / /  / / __/ __ `/ __ `__ \/ _ \
-        // / __/ / /  / /_/ / /_/ / /_/ /  / /_/ / /_/ / / / / / /  __/
-        ///_/   /_/   \____/\__, /\__, /   \____/\__,_/_/ /_/ /_/\___/
-        //                 /____//____/
+        showMessage("");
+        showMessage("");
     }
 
     @Override
@@ -97,7 +99,7 @@ public class FrogKeyboardIO extends FrogIO {
                 x = Integer.parseInt(getInfo());
                 break;
             } catch (Exception e) {
-                showMessage("Invalid input! Please retype a valid integer value...");
+                showErrorMessage("Invalid input! Please retype a valid integer value...");
             }
         }
 
@@ -106,9 +108,9 @@ public class FrogKeyboardIO extends FrogIO {
 
     @Override
     public Icon getIcon() {
-        showMessage("Please insert the icon (max 2 chars): ", false);
+        showMessage("Please insert the icon for it (max 2 chars): ", false);
         String input = getInfo();
-        String textIcon = input.length() > 2 ? input.substring(0, 2) : input;
+        String textIcon = input.length() > 2 ? input.substring(0, 2) : input.length() < 2 ? input + " " : input;
         return new TextIcon(textIcon);
     }
 

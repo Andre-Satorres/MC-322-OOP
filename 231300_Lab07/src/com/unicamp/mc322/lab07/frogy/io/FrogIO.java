@@ -23,6 +23,8 @@ public abstract class FrogIO {
 
     public abstract int getInt(String message);
 
+    public abstract boolean getYes(String message);
+
     public abstract Icon getIcon();
 
     public abstract int getFrogType();

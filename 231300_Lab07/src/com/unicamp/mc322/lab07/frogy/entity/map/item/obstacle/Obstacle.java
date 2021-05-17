@@ -11,7 +11,7 @@ public class Obstacle extends MapItem {
 
     public Obstacle(Icon icon, Position ... positions) {
         super(icon);
-        this.positions = new Position[positions.length];
+        this.positions = positions;
     }
 
     @Override
