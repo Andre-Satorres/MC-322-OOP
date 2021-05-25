@@ -2,33 +2,33 @@ package com.unicamp.mc322.lab09.list;
 
 import com.unicamp.mc322.lab09.person.Person;
 
-public class Node {
+class Node {
     private final Person person;
     private Node previous, next;
 
-    public Node(Node previous, Node next, Person person) {
+    Node(Node previous, Node next, Person person) {
         this.previous = previous;
         this.next = next;
         this.person = person;
     }
 
-    public Node(Person person) {
+    Node(Person person) {
         this.person = person;
     }
 
-    public Person getPerson() {
+    Person getPerson() {
         return person;
     }
 
-    public Node getPrevious() {
+    Node getPrevious() {
         return previous;
     }
 
-    public Node getNext() {
+    Node getNext() {
         return next;
     }
 
-    public void addPrevious(Person person) {
+    void addPrevious(Person person) {
         this.previous = new Node(this.previous, this, person);
 
         if (this.previous.previous != null) {
@@ -36,7 +36,7 @@ public class Node {
         }
     }
 
-    public void addNext(Person person) {
+    void addNext(Person person) {
         this.next = new Node(this, this.next, person);
 
         if (this.next.next != null) {
@@ -44,7 +44,7 @@ public class Node {
         }
     }
 
-    public void removeNext() {
+    void removeNext() {
         this.next = this.next == null ? null : this.next.next;
 
         if (this.next != null) {
@@ -52,7 +52,7 @@ public class Node {
         }
     }
 
-    public Node getLastNonNull() {
+    Node getLastNotNull() {
         Node aux = this;
         while (aux.next != null) {
             aux = aux.next;

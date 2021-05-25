@@ -29,7 +29,7 @@ public class ListOfPerson {
         if (list == null) {
             addOnNullList(person);
         } else {
-            Node aux = list.getLastNonNull();
+            Node aux = list.getLastNotNull();
             aux.addNext(personClone(person));
         }
 
@@ -77,7 +77,7 @@ public class ListOfPerson {
         if (this.size == 1) {
             ret = removeUnique();
         } else {
-            Node aux = list.getLastNonNull();
+            Node aux = list.getLastNotNull();
             ret = aux.getPerson();
             aux.getPrevious().removeNext();
         }
