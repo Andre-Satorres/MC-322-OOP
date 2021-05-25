@@ -17,32 +17,32 @@ public class ListOfPerson {
     public void addFirst(Person person) {
         if (list == null) {
             addOnNullList(person);
-            return;
+        } else {
+            list.addPrevious(personClone(person));
         }
 
-        list.addPrevious(personClone(person));
         this.size++;
     }
 
     public void addLast(Person person) {
         if (list == null) {
             addOnNullList(person);
-            return;
+        } else {
+            Node aux = list.getLastNonNull();
+            aux.addNext(personClone(person));
         }
 
-        Node aux = list.getLastNonNull();
-        aux.addNext(personClone(person));
         this.size++;
     }
 
     public void add(Person person, int index) {
         if (list == null) {
             addOnNullList(person);
-            return;
+        } else {
+            Node aux = this.get(index);
+            aux.addPrevious(personClone(person));
         }
 
-        Node aux = this.get(index);
-        aux.addPrevious(personClone(person));
         this.size++;
     }
 
