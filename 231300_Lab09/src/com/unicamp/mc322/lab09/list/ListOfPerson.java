@@ -19,6 +19,7 @@ public class ListOfPerson {
             addOnNullList(person);
         } else {
             list.addPrevious(personClone(person));
+            list = list.getPrevious();
         }
 
         this.size++;
@@ -36,45 +37,81 @@ public class ListOfPerson {
     }
 
     public void add(Person person, int index) {
-        if (list == null) {
-            addOnNullList(person);
+        if (index < 0) {
+            throw new ListOfPersonException("Index invalid!");
+        }
+
+        if (index > this.size) {
+            throw new ListOfPersonException("Index greater then list size!");
+        }
+
+        if (index == 0) {
+            addFirst(person);
+        } else if (index == this.size) {
+            addLast(person);
         } else {
-            Node aux = this.get(index);
-            aux.addPrevious(personClone(person));
+            Node aux = this.get(index - 1);
+            aux.addNext(personClone(person));
         }
 
         this.size++;
     }
 
     public Person removeFirst() {
-        checkNull();
+        if (this.size == 0) {
+            throw new ListOfPersonException("The list is empty!");
+        }
 
         Person ret = list.getPerson();
         list = list.getNext();
         this.size--;
-
         return ret;
     }
 
     public Person removeLast() {
-        checkNull();
+        if (this.size == 0) {
+            throw new ListOfPersonException("The list is empty!");
+        }
 
-        Node aux = list.getLastNonNull();
-        Person ret = aux.getPerson();
-        aux.getPrevious().removeNext();
+        Person ret;
+        if (this.size == 1) {
+            ret = removeUnique();
+        } else {
+            Node aux = list.getLastNonNull();
+            ret = aux.getPerson();
+            aux.getPrevious().removeNext();
+        }
+
         this.size--;
-
         return ret;
     }
 
     public Person remove(int index) {
-        checkNull();
+        if (this.size == 0) {
+            throw new ListOfPersonException("The list is empty!");
+        }
+
+        if (index < 0) {
+            throw new ListOfPersonException("Index invalid!");
+        }
+
+        if (index > this.size) {
+            throw new ListOfPersonException("Index greater then list size!");
+        }
+
+        if (index == 0) {
+            return removeFirst();
+        }
+
+        if (index == this.size - 1) {
+            return removeLast();
+        }
 
         Node aux = this.get(index);
         Person ret = aux.getPerson();
         aux.getPrevious().removeNext();
-        this.size--;
 
+        this.size--;
         return ret;
     }
 
@@ -117,9 +154,9 @@ public class ListOfPerson {
         return aux;
     }
 
-    private void checkNull() {
-        if (list == null) {
-            throw new ListOfPersonException("The list is empty!");
-        }
+    private Person removeUnique() {
+        Person ret = this.list.getPerson();
+        this.list = null;
+        return ret;
     }
 }

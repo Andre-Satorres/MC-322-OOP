@@ -2,8 +2,6 @@ package com.unicamp.mc322.lab09.list;
 
 import com.unicamp.mc322.lab09.person.Person;
 
-import java.util.StringJoiner;
-
 public class Node {
     private Node previous, next;
     private final Person person;
@@ -31,16 +29,35 @@ public class Node {
     }
 
     public void addPrevious(Person person) {
-        Node prevPrev = this.previous == null ? null : this.previous.previous;
-        this.previous = new Node(prevPrev, this, person);
+        this.previous = new Node(this.previous, this, person);
+
+        if (this.previous.previous != null) {
+            this.previous.previous.next = this.previous;
+        }
     }
 
     public void addNext(Person person) {
-        this.next = new Node(this, null, person);
+        this.next = new Node(this, this.next, person);
+
+        if (this.next.next != null) {
+            this.next.next.previous = this.next;
+        }
+    }
+
+    public void removePrevious() {
+        this.previous = this.previous == null ? null : this.previous.previous;
+
+        if (this.previous != null) {
+            this.previous.next = this;
+        }
     }
 
     public void removeNext() {
-        this.next = null;
+        this.next = this.next == null ? null : this.next.next;
+
+        if (this.next != null) {
+            this.next.previous = this;
+        }
     }
 
     public Node getLastNonNull() {

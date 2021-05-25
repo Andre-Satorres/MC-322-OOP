@@ -35,7 +35,7 @@ public class QueueOfPerson {
     @Override
     public String toString() {
         return new StringJoiner(", ", QueueOfPerson.class.getSimpleName() + "[", "]")
-                .add("listOfPerson=" + queue)
+                .add("queue=" + queue)
                 .toString();
     }
 }
