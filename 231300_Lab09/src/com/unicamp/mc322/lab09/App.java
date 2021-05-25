@@ -7,9 +7,9 @@ import com.unicamp.mc322.lab09.queue.QueueOfPerson;
 
 public class App {
     private static final Person[] people = {
-            new Person("Andre Satorres", "51377028892", 18),
+            new Person("Andre Felix", "51377028892", 18),
             new Person("Gabriel Jose", "12345678900", 21),
-            new Person("Flavia Almeida", "98765432134", 56),
+            new Person("Filip Rex", "98765432134", 56),
             new Person("Dona Roberta", "65386542398", 89)
     };
     private final PeopleServiceQueue peopleServiceQueue;
@@ -80,8 +80,15 @@ public class App {
         queueOfPerson.enqueue(people[2]);
         queueOfPerson.enqueue(people[3]);
 
+        ptl(queueOfPerson.size());
+
         ptl(queueOfPerson);
         queueOfPerson.clean();
+
+        if (queueOfPerson.isEmpty()) {
+            ptl("Queue purged!");
+        }
+
         ptl(queueOfPerson);
 
         queueOfPerson.enqueue(people[3]);

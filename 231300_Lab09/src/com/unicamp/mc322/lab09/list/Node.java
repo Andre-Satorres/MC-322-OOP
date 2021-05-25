@@ -44,14 +44,6 @@ public class Node {
         }
     }
 
-    public void removePrevious() {
-        this.previous = this.previous == null ? null : this.previous.previous;
-
-        if (this.previous != null) {
-            this.previous.next = this;
-        }
-    }
-
     public void removeNext() {
         this.next = this.next == null ? null : this.next.next;
 
