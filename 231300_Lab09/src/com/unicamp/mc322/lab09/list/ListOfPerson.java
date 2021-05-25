@@ -147,7 +147,7 @@ public class ListOfPerson {
 
     private Node get(int index) {
         Node aux = list;
-        for (int i=0; i<index; i++) {
+        for (int i = 0; i < index; i++) {
             aux = aux.getNext();
         }
 

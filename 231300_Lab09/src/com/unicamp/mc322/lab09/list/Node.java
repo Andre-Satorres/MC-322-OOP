@@ -3,8 +3,8 @@ package com.unicamp.mc322.lab09.list;
 import com.unicamp.mc322.lab09.person.Person;
 
 public class Node {
-    private Node previous, next;
     private final Person person;
+    private Node previous, next;
 
     public Node(Node previous, Node next, Person person) {
         this.previous = previous;

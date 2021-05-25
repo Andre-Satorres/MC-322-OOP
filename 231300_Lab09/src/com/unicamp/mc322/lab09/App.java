@@ -6,18 +6,17 @@ import com.unicamp.mc322.lab09.queue.PeopleServiceQueue;
 import com.unicamp.mc322.lab09.queue.QueueOfPerson;
 
 public class App {
+    private static final Person[] people = {
+            new Person("Andre Satorres", "51377028892", 18),
+            new Person("Gabriel Jose", "12345678900", 21),
+            new Person("Flavia Almeida", "98765432134", 56),
+            new Person("Dona Roberta", "65386542398", 89)
+    };
     private final PeopleServiceQueue peopleServiceQueue;
 
     public App() {
         this.peopleServiceQueue = new PeopleServiceQueue();
     }
-
-    public static Person[] people = {
-        new Person("Andre Satorres", "51377028892", 18),
-        new Person("Gabriel Jose", "12345678900", 21),
-        new Person("Flavia Almeida", "98765432134", 56),
-        new Person("Dona Roberta", "65386542398", 89)
-    };
 
     public void start() {
         useListOfPerson();
