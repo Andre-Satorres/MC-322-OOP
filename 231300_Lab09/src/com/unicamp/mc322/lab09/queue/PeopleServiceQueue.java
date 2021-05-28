@@ -1,20 +1,19 @@
 package com.unicamp.mc322.lab09.queue;
 
-import com.unicamp.mc322.lab09.list.ListOfPerson;
 import com.unicamp.mc322.lab09.person.Person;
 
 import java.util.StringJoiner;
 
 public class PeopleServiceQueue extends QueueOfPerson {
-    private final ListOfPerson priorityQueue;
+    private final QueueOfPerson priorityQueue;
 
     public PeopleServiceQueue() {
-        this.priorityQueue = new ListOfPerson();
+        this.priorityQueue = new QueueOfPerson();
     }
 
     public void enqueue(Person person, boolean isPriority) {
         if (isPriority) {
-            priorityQueue.addLast(person);
+            priorityQueue.enqueue(person);
         } else {
             queue.addLast(person);
         }
@@ -26,7 +25,7 @@ public class PeopleServiceQueue extends QueueOfPerson {
             return queue.removeFirst();
         }
 
-        return priorityQueue.removeFirst();
+        return priorityQueue.dequeue();
     }
 
     @Override

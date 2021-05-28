@@ -50,7 +50,7 @@ public class ListOfPerson {
         } else if (index == this.size) {
             addLast(person);
         } else {
-            Node aux = this.get(index - 1);
+            Node aux = this.getNode(index - 1);
             aux.addNext(personClone(person));
         }
 
@@ -107,7 +107,7 @@ public class ListOfPerson {
             return removeLast();
         }
 
-        Node aux = this.get(index);
+        Node aux = this.getNode(index);
         Person ret = aux.getPerson();
         aux.getPrevious().removeNext();
 
@@ -145,7 +145,7 @@ public class ListOfPerson {
         list = new Node(personClone(person));
     }
 
-    private Node get(int index) {
+    private Node getNode(int index) {
         Node aux = list;
         for (int i = 0; i < index; i++) {
             aux = aux.getNext();
