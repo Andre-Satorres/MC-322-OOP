@@ -6,8 +6,8 @@ import com.unicamp.mc322.lab10.pidao.food.FoodException;
 import com.unicamp.mc322.lab10.pidao.random.RandomAlphaGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Menu {
     private final List<Food> foods;
@@ -38,6 +38,13 @@ public class Menu {
         }
 
         food.applyDiscount(discountType, discountAmount);
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner ret = new StringJoiner("\n - ", Menu.class.getSimpleName() + "\n - ", "");
+        foods.forEach(food -> ret.add(food.toString()));
+        return ret.toString();
     }
 
     private Food getById(String id) {

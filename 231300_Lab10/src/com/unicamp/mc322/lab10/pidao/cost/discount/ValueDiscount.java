@@ -11,6 +11,6 @@ public class ValueDiscount extends Discount {
 
     @Override
     public double apply(double price) {
-        return Math.min(price - amount, 0);
+        return Math.max(price - amount, 0);
     }
 }

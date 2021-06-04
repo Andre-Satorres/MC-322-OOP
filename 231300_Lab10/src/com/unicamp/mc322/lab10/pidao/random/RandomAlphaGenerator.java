@@ -14,7 +14,7 @@ public class RandomAlphaGenerator {
 
     public String randomString() {
         StringBuilder sb = new StringBuilder(stringLength);
-        for(int i = 0; i < stringLength; i++)
+        for (int i = 0; i < stringLength; i++)
             sb.append(ALL_ALPHA_NUMERIC.charAt(random.nextInt(ALL_ALPHA_NUMERIC.length())));
         return sb.toString();
     }

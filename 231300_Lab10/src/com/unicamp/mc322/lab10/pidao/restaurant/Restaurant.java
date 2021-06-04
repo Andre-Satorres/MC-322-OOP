@@ -1,6 +1,8 @@
 package com.unicamp.mc322.lab10.pidao.restaurant;
 
+import com.unicamp.mc322.lab10.pidao.cost.discount.DiscountType;
 import com.unicamp.mc322.lab10.pidao.position.Position;
+import com.unicamp.mc322.lab10.pidao.rating.Ratings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Restaurant {
     private final Position position;
     private final List<String> deliverymanCPFs;
     private final Menu menu;
+    private final Ratings ratings;
 
     public Restaurant(String name, String cnpj, Position position) {
         this.name = name;
@@ -18,6 +21,7 @@ public class Restaurant {
         this.position = position;
         this.deliverymanCPFs = new ArrayList<>();
         this.menu = new Menu();
+        this.ratings = new Ratings();
     }
 
     public String getCnpj() {
@@ -36,8 +40,12 @@ public class Restaurant {
         this.menu.removeFood(id);
     }
 
-    public void addDiscountToFood(String foodId) {
+    public void addDiscountToFood(String foodId, DiscountType discountType, double discountAmount) {
+        this.menu.applyDiscount(foodId, discountType, discountAmount);
+    }
 
+    public String getMenuInfo() {
+        return "Restaurant: " + name + "\n" + menu;
     }
 
     @Override

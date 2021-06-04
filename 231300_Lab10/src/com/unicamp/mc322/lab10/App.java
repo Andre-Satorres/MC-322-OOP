@@ -1,4 +1,4 @@
-package com.unicamp.mc322.lab10.app;
+package com.unicamp.mc322.lab10;
 
 import com.unicamp.mc322.lab10.pidao.Pidao;
 import com.unicamp.mc322.lab10.pidao.position.Position;
@@ -15,6 +15,15 @@ public class App {
         registerCustomers();
         registerDeliverymen();
         registerRestaurants();
+
+        pidao.addFoodToRestaurantMenu("12345", "Comida Boa", 20, 5);
+        pidao.addFoodToRestaurantMenu("12345", "Comida Rapida", 5, 1);
+        pidao.addFoodToRestaurantMenu("567984", "Cervejinha", 6, 0);
+        pidao.addFoodToRestaurantMenu("5435634", "Brigadeiro", 3, 2);
+
+        pidao.assignDeliverymanToRestaurant("1244345789-00", "12345");
+
+        System.out.println(pidao.getAllMenu());
     }
 
     private void registerCustomers() {

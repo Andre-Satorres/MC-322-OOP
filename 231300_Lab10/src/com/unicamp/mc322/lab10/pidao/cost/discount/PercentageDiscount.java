@@ -6,7 +6,7 @@ public class PercentageDiscount extends Discount {
 
         if (amount > 100 || amount < 0) {
             throw new DiscountException("Percentage Discount amount out of bounds!");
-       }
+        }
     }
 
     @Override

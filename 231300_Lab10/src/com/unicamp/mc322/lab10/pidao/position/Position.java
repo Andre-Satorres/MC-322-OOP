@@ -1,7 +1,5 @@
 package com.unicamp.mc322.lab10.pidao.position;
 
-import java.util.StringJoiner;
-
 public class Position {
     private final double x;
     private final double y;

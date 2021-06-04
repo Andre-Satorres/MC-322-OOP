@@ -5,9 +5,9 @@ import java.util.List;
 
 public abstract class Order {
     private final List<String> foodIds;
+    protected OrderStatus status;
     private String customerCpf;
     private String restaurantCnpj;
-    protected OrderStatus status;
 
     public Order(String customerCpf, String restaurantCnpj, String... foodIds) {
         this.foodIds = Arrays.asList(foodIds);
