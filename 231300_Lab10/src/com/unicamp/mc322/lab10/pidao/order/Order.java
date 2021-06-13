@@ -100,7 +100,7 @@ public abstract class Order {
                 .add(String.format("Order from customer %s to restaurant %s:", customerCpf, restaurantCnpj))
                 .add(" - Foods: " + foodIds)
                 .add(" - Status: " + status)
-                .add(" - Cost: " + (cost == null ? "Not calculated yet" : String.format("$%.2f", this.cost.getRealCost())))
+                .add(" - Cost: " + (cost == null ? "Not calculated" : String.format("$%.2f", this.cost.getRealCost())))
                 .toString();
     }
 
