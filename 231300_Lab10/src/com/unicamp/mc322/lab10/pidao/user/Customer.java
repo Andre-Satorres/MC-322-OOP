@@ -11,6 +11,10 @@ public class Customer extends User {
         this.position = position;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     @Override
     public String toString() {
         return String.format("Customer: %s - %s - %s", name, cpf, position);

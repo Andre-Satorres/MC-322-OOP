@@ -25,7 +25,18 @@ public class Cost {
         }
     }
 
+    public void removeDiscount() {
+        this.discount = new ValueDiscountFactory(0);
+    }
+
     public double getRealCost() {
         return discount.applyDiscount(originalPrice);
+    }
+
+    @Override
+    public String toString() {
+        String suffix = " (DISCOUNT! Original Price: " + String.format("$%.2f", this.originalPrice) + ")";
+        boolean shouldAddSuffix = getRealCost() != originalPrice;
+        return String.format("$%.2f", getRealCost()) + (shouldAddSuffix ? suffix : "");
     }
 }

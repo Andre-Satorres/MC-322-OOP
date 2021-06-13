@@ -3,6 +3,7 @@ package com.unicamp.mc322.lab10.pidao.food;
 import com.unicamp.mc322.lab10.pidao.cost.Cost;
 import com.unicamp.mc322.lab10.pidao.cost.discount.DiscountType;
 import com.unicamp.mc322.lab10.pidao.rating.Ratings;
+import com.unicamp.mc322.lab10.pidao.rating.Stars;
 
 import java.util.StringJoiner;
 
@@ -30,17 +31,33 @@ public class Food {
         this.cost.createDiscount(discountType, discountAmount);
     }
 
+    public void removeDiscount() {
+        this.cost.removeDiscount();
+    }
+
+    public double getPrice() {
+        return this.cost.getRealCost();
+    }
+
     public int getPreparingTimeSeconds() {
         return preparingTimeSeconds;
     }
 
+    public void rate(Stars stars, String comment) {
+        this.ratings.addRating(stars.ordinal(), comment);
+    }
+
     @Override
     public String toString() {
-        return new StringJoiner(" - ")
+        return new StringJoiner("\n")
                 .add(name)
-                .add(id)
-                .add("R$" + cost.getRealCost())
-                .add(preparingTimeSeconds + "s")
+                .add("    - Id: " + id)
+                .add("    - Cost: " + cost)
+                .add("    - Preparing time: " + preparingTimeSeconds + "s")
                 .toString();
+    }
+
+    public String getRatingInfo() {
+        return name + ":\n" + ratings.getInfo();
     }
 }
