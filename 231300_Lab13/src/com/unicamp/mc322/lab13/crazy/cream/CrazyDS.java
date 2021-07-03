@@ -27,6 +27,10 @@ public class CrazyDS implements ICrazyDS {
         if (!removed) {
             throw new CrazyDSException("Element not found on queue!");
         }
+
+        for (IOrder toUpdate : priorityQueue) {
+            toUpdate.newShift();
+        }
     }
 
     @Override

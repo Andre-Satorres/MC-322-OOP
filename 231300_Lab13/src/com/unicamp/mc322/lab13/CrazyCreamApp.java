@@ -7,8 +7,8 @@ import java.time.Month;
 
 public class CrazyCreamApp {
     public static void main(String[] args) {
-        ICrazyDS crazyDS = new CrazyDS(new PriorityScore());
-        //ICrazyDS crazyDS = new CrazyDS(new YourStrategy2());
+        //ICrazyDS crazyDS = new CrazyDS(new PriorityScore());
+        ICrazyDS crazyDS = new CrazyDS(new MyCrazyScore());
         IOrder order1 = new InternetOrder(new BRPerson(LocalDate.of( 1985 , Month.JANUARY , 1 ), "CPF1", "name1"));
         IOrder order2 = new InternetOrder(new BRPerson(LocalDate.of( 1986 , Month.JANUARY , 2 ), "CPF2", "name2"));
         IOrder order3 = new InternetOrder(new BRPerson(LocalDate.of( 1987 , Month.JANUARY , 3 ), "CPF3", "name3"));
