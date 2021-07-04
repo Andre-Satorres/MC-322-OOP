@@ -7,7 +7,7 @@ public class CrazyDS implements ICrazyDS {
     private final TreeSet<IOrder> priorityQueue;
 
     public CrazyDS(ISortStrategy sortStrategy) {
-        // reversed to use max-priority (PriorityQueue by default is a min-priority)
+        // reversed to use max-priority (TreeSet by default is a min-priority)
         this.priorityQueue = new TreeSet<>(sortStrategy.reversed());
     }
 
