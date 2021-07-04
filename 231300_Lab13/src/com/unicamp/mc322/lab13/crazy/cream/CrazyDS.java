@@ -1,14 +1,14 @@
 package com.unicamp.mc322.lab13.crazy.cream;
 
-import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 public class CrazyDS implements ICrazyDS {
 
-    private final PriorityQueue<IOrder> priorityQueue;
+    private final TreeSet<IOrder> priorityQueue;
 
     public CrazyDS(ISortStrategy sortStrategy) {
         // reversed to use max-priority (PriorityQueue by default is a min-priority)
-        this.priorityQueue = new PriorityQueue<>(10, sortStrategy.reversed());
+        this.priorityQueue = new TreeSet<>(sortStrategy.reversed());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class CrazyDS implements ICrazyDS {
 
     @Override
     public IOrder peekElement() {
-        return priorityQueue.peek();
+        return priorityQueue.first();
     }
 
     @Override
